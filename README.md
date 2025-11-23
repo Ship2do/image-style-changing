@@ -8,6 +8,7 @@
 
 ### Overview
 This MATLAB project implements a color pencil sketch effect for images using a vector gradient-based algorithm. It provides both a graphical user interface (GUI) for interactive editing and batch processing capabilities.
+
 ![Pencil Sketch GUI - Preview](gui_screenshot.png)
 
 ### Features
@@ -136,15 +137,13 @@ Version 1.3 - Updated with HSV brightness control
 
 ---
 
-<<<<<<< HEAD
-=======
 <a name="chinese"></a>
 
->>>>>>> af316de9c30612c31a5eb064223cfcd502215185
 ## 🇨🇳 中文
 
 ### 概述
 这是一个基于向量梯度算法的MATLAB彩色铅笔素描效果项目。提供交互式图形界面和批量处理功能。
+
 ![Pencil Sketch GUI - 预览](gui_screenshot.png)
 
 ### 功能特性
