@@ -136,6 +136,11 @@ Version 1.3 - Updated with HSV brightness control
 
 ---
 
+<<<<<<< HEAD
+=======
+<a name="chinese"></a>
+
+>>>>>>> af316de9c30612c31a5eb064223cfcd502215185
 ## 🇨🇳 中文
 
 ### 概述
