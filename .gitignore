@@ -1,0 +1,26 @@
+# MATLAB
+*.asv
+*.m~
+*.mex*
+*.mat
+slprj/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Example output (optional - 如果想上传示例输出，删除下面这行)
+examples/output/*
+!examples/output/.gitkeep
