@@ -77,11 +77,10 @@ function sketchImage = extractLines(img, lineThreshold)
 end
 
 
-function PPG = colorGradient(f, T)
+function PPG = colorGradient(f)
     % COLORGRADIENTSINGLE 计算单个颜色通道的向量梯度
     % 输入:
     %   f - 单个颜色通道（double类型）
-    %   T - 阈值（可选）
     % 输出:
     %   PPG - 每通道梯度
     
@@ -94,9 +93,4 @@ function PPG = colorGradient(f, T)
     % 计算每通道梯度
     FG = sqrt(Fx.^2 + Fy.^2);
     PPG = mat2gray(FG);
-    
-    % 如果提供了阈值，进行阈值处理
-    if nargin == 2
-        PPG = (PPG > T) .* PPG;
-    end
 end
