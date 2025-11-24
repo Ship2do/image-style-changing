@@ -19,9 +19,9 @@ function sketchImage = extractLines(img, lineThreshold)
     
     %% 计算每个颜色通道的向量梯度
     % 对R、G、B三个通道分别计算
-    [~, ~, R] = colorGradientSingle(double(img(:,:,1)));
-    [~, ~, G] = colorGradientSingle(double(img(:,:,2)));
-    [~, ~, B] = colorGradientSingle(double(img(:,:,3)));
+    R = colorGradient(double(img(:,:,1)));
+    G = colorGradient(double(img(:,:,2)));
+    B = colorGradient(double(img(:,:,3)));
     
     % 转换为8位无符号整数
     uR = im2uint8(R);
@@ -77,14 +77,12 @@ function sketchImage = extractLines(img, lineThreshold)
 end
 
 
-function [VG, A, PPG] = colorGradientSingle(f, T)
+function PPG = colorGradient(f, T)
     % COLORGRADIENTSINGLE 计算单个颜色通道的向量梯度
     % 输入:
     %   f - 单个颜色通道（double类型）
     %   T - 阈值（可选）
     % 输出:
-    %   VG - 向量梯度
-    %   A - 梯度方向角
     %   PPG - 每通道梯度
     
     % 使用Sobel算子计算x和y方向的导数
@@ -93,35 +91,12 @@ function [VG, A, PPG] = colorGradientSingle(f, T)
     Fx = imfilter(double(f), sh, 'replicate');
     Fy = imfilter(double(f), sv, 'replicate');
     
-    % 计算向量梯度的参数
-    gxx = Fx.^2;
-    gyy = Fy.^2;
-    gxy = Fx .* Fy;
-    
-    % 计算梯度方向
-    A = 0.5 * (atan(2*gxy ./ (gxx - gyy + eps)));
-    
-    % 计算第一个方向的梯度
-    G1 = 0.5 * ((gxx + gyy) + (gxx - gyy).*cos(2*A) + 2*gxy.*sin(2*A));
-    
-    % 计算垂直方向（+pi/2）的梯度
-    A = A + pi/2;
-    G2 = 0.5 * ((gxx + gyy) + (gxx - gyy).*cos(2*A) + 2*gxy.*sin(2*A));
-    
-    % 开平方
-    G1 = G1.^0.5;
-    G2 = G2.^0.5;
-    
-    % 取每个点的最大值并归一化到[0,1]
-    VG = mat2gray(max(G1, G2));
-    
     % 计算每通道梯度
     FG = sqrt(Fx.^2 + Fy.^2);
     PPG = mat2gray(FG);
     
     % 如果提供了阈值，进行阈值处理
     if nargin == 2
-        VG = (VG > T) .* VG;
         PPG = (PPG > T) .* PPG;
     end
 end
